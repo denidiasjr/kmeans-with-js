@@ -1,0 +1,24 @@
+body {
+  background: #548687;
+  padding: 50px;
+  font: 14px Montserrat,Helvetica,Arial,Sans-Serif;
+}
+
+.titulo {
+  color: white;
+  text-align: center;
+  font-size: 3em;
+}
+
+#kmeans {
+  margin-top: 20px;
+  background: #8FBC94;
+  border-radius: 10px;
+}
+
+.options {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 15px;
+}
