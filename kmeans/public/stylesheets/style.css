@@ -1,7 +1,7 @@
 body {
-  background: #548687;
+  background-image: linear-gradient(45deg,#3F51B5 0,#499abf 70%);
   padding: 50px;
-  font: 14px Montserrat,Helvetica,Arial,Sans-Serif;
+  font: 14px "Lato",Montserrat,Helvetica,Arial,Sans-Serif;
 }
 
 .titulo {
@@ -10,15 +10,27 @@ body {
   font-size: 3em;
 }
 
-#kmeans {
+#canvas_kmeans {
   margin-top: 20px;
-  background: #8FBC94;
+  background: #ededed;
   border-radius: 10px;
 }
 
 .options {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  margin-bottom: 15px;
+  margin-top: 25px;
+}
+
+.options label {
+  color: white;
+}
+
+.div-canvas-kmeans {
+  /* min-height: 300px; */
+  /* max-height: 600px; */
+  min-height: 60vh;
+  max-height: 60vh;
+}
+
+.label-action-button {
+  visibility: hidden;
 }
