@@ -23,12 +23,12 @@ class KMeans {
             '#01579B', // Blue
             '#1B5E20', // Green
             '#F57F17', // Orange
+            '#43A047', // Light Green
             '#F50057', // Pink
             '#37474F', // Gray
             '#3E2723', // Brown
             '#EF5350', // Light Red
             '#1E88E5', // Light Blue
-            '#43A047', // Light Green
         ];
     }
 
@@ -124,6 +124,10 @@ class KMeans {
 
             this.drawCentroid(centroidX, centroidY, this.colors[grp]);
         }
+    }
+
+    getNearestCentroid(instance) {
+        
     }
 
     isStarted() {
