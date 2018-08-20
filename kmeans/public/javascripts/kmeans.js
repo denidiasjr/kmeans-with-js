@@ -23,9 +23,9 @@ class KMeans {
             '#01579B', // Blue
             '#1B5E20', // Green
             '#F57F17', // Orange
-            '#3E2723', // Brown
-            '#37474F', // Gray
             '#F50057', // Pink
+            '#37474F', // Gray
+            '#3E2723', // Brown
             '#EF5350', // Light Red
             '#1E88E5', // Light Blue
             '#43A047', // Light Green

@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let actionButtonElement = document.getElementsByClassName('action-button')[0];
     actionButtonElement.addEventListener('click', function() {
+        let kmeansNumber = document.getElementById('k_number').value;
+        kMeans.setK(kmeansNumber);
         kMeans.start();
     });
 
