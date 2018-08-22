@@ -42,13 +42,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let previousButtonElement = document.getElementById('previous_button');
     previousButtonElement.addEventListener('click', function() {
 
-        
     });
 
     let nextButtonElement = document.getElementById('next_button');
     nextButtonElement.addEventListener('click', function() {
-
-
+        kMeans.recalculateGroups();
     });
 
 });
@@ -56,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
 window.addEventListener('click', function(event) {
     
     if (event.target.id == ID_CANVAS_KMEANS && !kMeans.isStarted()) {
-        kMeans.drawInstance(event.offsetX, event.offsetY);
+        kMeans.addInstance(event.offsetX, event.offsetY);
     }
 });
 

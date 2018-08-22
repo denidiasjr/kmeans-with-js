@@ -41,6 +41,22 @@ class KMeans {
         this.canvasContext.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
     }
 
+    resetGroups() {
+        for (let i = 0; i < this.k; i++) {
+            this.groups[i] = [];
+        }
+    }
+
+    addInstance(x, y, color) {
+        this.instances.push({'x': x, 'y': y});
+        this.drawInstance(x, y, color);
+    }
+
+    addCentroid(x, y, color) {
+        this.centroids.push({'x': x, 'y': y});
+        this.drawCentroid(x, y, color);
+    }
+
     drawInstance(x, y, color) {
 
         if (!color) {
@@ -54,9 +70,6 @@ class KMeans {
         this.canvasContext.closePath();
         this.canvasContext.fill();
         this.canvasContext.stroke();
-
-        // Add to groups
-        this.instances.push({'x': x, 'y': y});
     }
 
     drawCentroid(x, y, color) {
@@ -72,9 +85,6 @@ class KMeans {
         this.canvasContext.closePath();
         this.canvasContext.fill();
         this.canvasContext.stroke();
-
-        // Add to centroids
-        this.centroids.push({'x': x, 'y': y});
     }
 
     start() {
@@ -92,21 +102,18 @@ class KMeans {
         }
 
         // Set the initial groups
-        let instancesLength = this.instances.length;
-        for (let inst = 0; inst < instancesLength; inst++) {
+        for (let inst = 0; inst < this.instances.length; inst++) {
             let randomK = Math.floor((Math.random() * this.k));
-            this.groups[randomK].push({
-                'x': this.instances[inst].x, 
-                'y': this.instances[inst].y
-            });
+            this.groups[randomK].push(this.instances[inst]);
             this.drawInstance(this.instances[inst].x, this.instances[inst].y, this.colors[randomK]);
         }
 
-        this.instances = [];
         this.setCentroids();
     }
 
     setCentroids() {
+
+        this.centroids = [];
 
         for (let grp = 0; grp < this.k; grp++) {
             
@@ -122,12 +129,45 @@ class KMeans {
             centroidX /= groupLength;
             centroidY /= groupLength;
 
-            this.drawCentroid(centroidX, centroidY, this.colors[grp]);
+            this.addCentroid(centroidX, centroidY, this.colors[grp]);
         }
     }
 
-    getNearestCentroid(instance) {
+    recalculateGroups() {
         
+        this.resetGroups();
+        this.clearBoard();
+
+        for (let inst = 0; inst < this.instances.length; inst++) {
+            let group = this.getNearestGroup(this.instances[inst]);
+            this.groups[group].push(this.instances[inst]);
+            this.drawInstance(this.instances[inst].x, this.instances[inst].y, this.colors[group]);
+        }
+
+        this.setCentroids();
+    }
+
+    getNearestGroup(instance) {
+        
+        let nearestCentroid = 0;
+        let bestDistance = Number.MAX_SAFE_INTEGER;
+
+        for (let cent = 0; cent < this.centroids.length; cent++) {
+            let distance = this.calcDistance(instance, this.centroids[cent]);
+
+            if (distance < bestDistance) {
+                nearestCentroid = cent;
+                bestDistance = distance;
+            }
+        }
+
+        return nearestCentroid;
+    }
+
+    calcDistance(a, b) {
+        let calcX = Math.pow((b.x - a.x), 2);
+        let calcY = Math.pow((b.y - a.y), 2);
+        return Math.sqrt(calcX + calcY );
     }
 
     isStarted() {
