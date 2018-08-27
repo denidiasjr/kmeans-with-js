@@ -90,7 +90,13 @@ class KMeans {
     start() {
 
         if (this.isStarted()) {
-            return;
+            console.error('Algorithm already started');
+            return false;
+        }
+
+        if (this.instances.length == 0) {
+            console.error('No instances to start');
+            return false;
         }
 
         this.started = true;
@@ -109,6 +115,28 @@ class KMeans {
         }
 
         this.setCentroids();
+
+        return true;
+    }
+
+    stop() {
+        this.clearBoard();
+        this.resetGroups();
+        this.instances = [];
+        this.started = false;
+        this.step = 0;
+    }
+
+    reset() {
+        this.clearBoard();
+        this.resetGroups();
+        this.started = false;
+        this.step = 0;
+
+        // Draw instances for the first time
+        for (let inst = 0; inst < this.instances.length; inst++) {
+            this.drawInstance(this.instances[inst].x, this.instances[inst].y);
+        }
     }
 
     setCentroids() {

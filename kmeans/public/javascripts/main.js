@@ -19,24 +19,47 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Start kMeans
             let kmeansNumber = document.getElementById('k_number').value;
+            kMeans.setK(kmeansNumber);
+
+            if (!kMeans.start()) {
+                alert('No instances to start or kMeans already started!');
+                return;
+            }
+
+            // Set nav buttons visible
             navButtonsGroup[0].style.visibility = 'visible';
             navButtonsGroup[1].style.visibility = 'visible';
-            kMeans.setK(kmeansNumber);
-            kMeans.start();
 
             // Change to Reset Button
             this.classList.remove('btn-success');
-            this.classList.add('btn-danger');
+            this.classList.add('btn-info');
             this.value = 'Reset';
         } else {
 
-            // TODO - Reset logic
+            // Reset board
+            kMeans.reset();
+
+            // Hide nav buttons
+            navButtonsGroup[0].style.visibility = 'hidden';
+            navButtonsGroup[1].style.visibility = 'hidden';
 
             // Change to Reset Button
-            this.classList.remove('btn-danger');
+            this.classList.remove('btn-info');
             this.classList.add('btn-success');
             this.value = 'Start!';
+
         }
+    });
+
+    let stopButtonElement = document.getElementsByClassName('stop-button')[0];
+    stopButtonElement.addEventListener('click', function() {
+        
+        kMeans.stop();
+
+        // Hide nav buttons
+        navButtonsGroup[0].style.visibility = 'hidden';
+        navButtonsGroup[1].style.visibility = 'hidden';
+
     });
 
     let previousButtonElement = document.getElementById('previous_button');

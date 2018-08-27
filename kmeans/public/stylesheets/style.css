@@ -17,7 +17,7 @@ body {
 }
 
 .options {
-  margin-top: 25px;
+  margin-top: 40px;
 }
 
 .options label {
@@ -25,12 +25,10 @@ body {
 }
 
 .div-canvas-kmeans {
-  /* min-height: 300px; */
-  /* max-height: 600px; */
   min-height: 60vh;
   max-height: 60vh;
 }
 
-.label-action-button {
+.label-button {
   visibility: hidden;
 }
