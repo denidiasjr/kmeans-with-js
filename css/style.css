@@ -11,13 +11,13 @@ body {
 }
 
 #canvas_kmeans {
-  margin-top: 20px;
+  margin-top: 10px;
   background: #ededed;
   border-radius: 10px;
 }
 
 .options {
-  margin-top: 40px;
+  margin-top: 25px;
 }
 
 .options label {
@@ -31,4 +31,14 @@ body {
 
 .label-button {
   visibility: hidden;
+}
+
+.my-github {
+  color: white;
+  font-size: 1em;
+  text-align: center;
+}
+
+.my-github a {
+  color: white;
 }
