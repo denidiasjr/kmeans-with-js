@@ -64,7 +64,7 @@ class KMeans {
         }
 
         this.canvasContext.beginPath();
-        this.canvasContext.arc(x, y, 5, 0, Math.PI * 2);
+        this.canvasContext.arc(x, y, 4, 0, Math.PI * 2);
         this.canvasContext.strokeStyle = color;
         this.canvasContext.fillStyle = color;
         this.canvasContext.closePath();
@@ -79,7 +79,7 @@ class KMeans {
         }
 
         this.canvasContext.beginPath();
-        this.canvasContext.arc(x, y, 7, 0, Math.PI * 2);
+        this.canvasContext.arc(x, y, 6, 0, Math.PI * 2);
         this.canvasContext.strokeStyle = '#000';
         this.canvasContext.fillStyle = color;
         this.canvasContext.closePath();
