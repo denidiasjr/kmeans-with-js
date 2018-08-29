@@ -3,16 +3,18 @@ const ID_CANVAS_KMEANS = 'canvas_kmeans';
 var kMeans;
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log('DOM Loaded!');
     kMeans = new KMeans(ID_CANVAS_KMEANS);
     resizeCanvas();
 
-    // Hide previous and next buttons
-    let navButtonsGroup = document.getElementsByClassName('div-nav-button');
-    navButtonsGroup[0].style.visibility = 'hidden';
-    navButtonsGroup[1].style.visibility = 'hidden';
+    // Buttons and groups
+    let actionButtonElement = document.getElementById('action_button');
+    let stopButtonElement = document.getElementById('stop_button');
+    let nextButtonElement = document.getElementById('next_button');
 
-    let actionButtonElement = document.getElementsByClassName('action-button')[0];
+    // Hide previous, next and stop buttons
+    nextButtonElement.style.visibility = 'hidden';
+    stopButtonElement.style.visibility = 'hidden';
+
     actionButtonElement.addEventListener('click', function() {
         
         if (this.value == 'Start!') {
@@ -27,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             // Set nav buttons visible
-            navButtonsGroup[0].style.visibility = 'visible';
-            navButtonsGroup[1].style.visibility = 'visible';
+            nextButtonElement.style.visibility = 'visible';
+            stopButtonElement.style.visibility = 'visible';
 
             // Change to Reset Button
             this.classList.remove('btn-success');
@@ -40,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
             kMeans.reset();
 
             // Hide nav buttons
-            navButtonsGroup[0].style.visibility = 'hidden';
-            navButtonsGroup[1].style.visibility = 'hidden';
+            nextButtonElement.style.visibility = 'hidden';
+            stopButtonElement.style.visibility = 'hidden';
 
             // Change to Reset Button
             this.classList.remove('btn-info');
@@ -51,23 +53,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    let stopButtonElement = document.getElementsByClassName('stop-button')[0];
     stopButtonElement.addEventListener('click', function() {
         
         kMeans.stop();
 
         // Hide nav buttons
-        navButtonsGroup[0].style.visibility = 'hidden';
-        navButtonsGroup[1].style.visibility = 'hidden';
+        nextButtonElement.style.visibility = 'hidden';
+        stopButtonElement.style.visibility = 'hidden';
+
+        // Change to Reset Button
+        actionButtonElement.classList.remove('btn-info');
+        actionButtonElement.classList.add('btn-success');
+        actionButtonElement.value = 'Start!';
 
     });
 
-    let previousButtonElement = document.getElementById('previous_button');
-    previousButtonElement.addEventListener('click', function() {
-
-    });
-
-    let nextButtonElement = document.getElementById('next_button');
     nextButtonElement.addEventListener('click', function() {
         kMeans.recalculateGroups();
     });
