@@ -90,13 +90,15 @@ class KMeans {
     start() {
 
         if (this.isStarted()) {
-            console.error('Algorithm already started');
-            return false;
+            throw new Error('Algorithm already started.');
         }
 
         if (this.instances.length == 0) {
-            console.error('No instances to start');
-            return false;
+            throw new Error('No instances to start.');
+        }
+
+        if (this.k > 10) {
+            throw new Error('Number of K must be less than 10.');
         }
 
         this.started = true;
@@ -111,12 +113,10 @@ class KMeans {
         for (let inst = 0; inst < this.instances.length; inst++) {
             let randomK = Math.floor((Math.random() * this.k));
             this.groups[randomK].push(this.instances[inst]);
-            this.drawInstance(this.instances[inst].x, this.instances[inst].y, this.colors[randomK]);
+            this.drawInstance(this.instances[inst].x, this.instances[inst].y);
         }
 
         this.setCentroids();
-
-        return true;
     }
 
     stop() {

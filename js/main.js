@@ -23,19 +23,24 @@ document.addEventListener("DOMContentLoaded", function() {
             let kmeansNumber = document.getElementById('k_number').value;
             kMeans.setK(kmeansNumber);
 
-            if (!kMeans.start()) {
-                alert('No instances to start or kMeans already started!');
-                return;
+            try {
+
+                // Start!
+                kMeans.start();
+
+                // Set nav buttons visible
+                nextButtonElement.style.visibility = 'visible';
+                stopButtonElement.style.visibility = 'visible';
+    
+                // Change to Reset Button
+                this.classList.remove('btn-success');
+                this.classList.add('btn-info');
+                this.value = 'Reset';
+                
+            } catch (e) {
+                alert(e.message);
             }
 
-            // Set nav buttons visible
-            nextButtonElement.style.visibility = 'visible';
-            stopButtonElement.style.visibility = 'visible';
-
-            // Change to Reset Button
-            this.classList.remove('btn-success');
-            this.classList.add('btn-info');
-            this.value = 'Reset';
         } else {
 
             // Reset board
